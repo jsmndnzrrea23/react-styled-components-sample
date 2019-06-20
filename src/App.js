@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
+import _ from 'lodash'
 
 class App extends Component {
   constructor(props){
     super(props)
-    this.state = {      
+    this.state = {     
+      data: null, 
     }
   }
 
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(data => this.setState({ data }));
+  }
+
   render(){
+    const { data } = this.state
+    const newData = _.take(data, 4);
+
     return (
       <Wrapper>
         <Section>
@@ -50,6 +61,15 @@ class App extends Component {
             </TableRow>                        
           </Table>
         </Section>        
+        <Section>
+          <Title>Fetch sample data from jsonplaceholder</Title>
+          <Spacer space={20}/> 
+          {newData.map(dd => {
+            return (
+              <Text key={dd.id}>{dd.id} {dd.body}</Text>
+            )})
+          }
+        </Section>
       </Wrapper>    
     )
   }
@@ -109,6 +129,9 @@ const TableColumn = styled.div`
   padding: 5px;
   border: 1px solid #00000060;
   min-width: 200px;
+`
+const Text = styled.p`
+  font-size: 0.9em;
 `
 
 export default App;
