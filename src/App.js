@@ -6,20 +6,50 @@ class App extends Component {
     super(props)
     this.state = {      
     }
-    this.redirect = this.redirect.bind(this)
-  }
-
-  redirect(){
-    window.open('https://www.styled-components.com/docs/basics');
   }
 
   render(){
     return (
       <Wrapper>
-        <Title>React using styled-components</Title>      
-        <ButtonGroup>
-          <Button onClick={()=> this.redirect()}>Get documentation</Button>
-        </ButtonGroup>
+        <Section>
+          <Title>Button</Title>
+          <Spacer space={20}/> 
+          <ButtonGroup>
+            <Button>Default Button</Button>
+            <Spacer space={10} />
+            <Button primary>Primary Button</Button>
+          </ButtonGroup>
+        </Section>
+        <Section>
+          <Title>Table</Title>
+          <Spacer space={20}/> 
+          <Table>
+            <TableRow>
+              <TableColumn>
+                Name
+              </TableColumn>              
+              <TableColumn>
+                Age
+              </TableColumn>                            
+            </TableRow>
+            <TableRow>
+              <TableColumn>
+                Hannah Cruz
+              </TableColumn>              
+              <TableColumn>
+                23 yrs. old
+              </TableColumn>                            
+            </TableRow>            
+            <TableRow>
+              <TableColumn>
+                Skylar Gray
+              </TableColumn>              
+              <TableColumn>
+                2 yrs. old
+              </TableColumn>                            
+            </TableRow>                        
+          </Table>
+        </Section>        
       </Wrapper>    
     )
   }
@@ -27,15 +57,25 @@ class App extends Component {
 
 const Wrapper = styled.div`
   background: papayawhip;
-  height: 100vh;
+  min-height: calc(100vh - 4em);
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const Section = styled.section`
+  margin: 1em;
+  padding: 1em;
+  width: calc(100% - 4em);
+  background-color: #00000030;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `
-const Title = styled.p`
+const Title = styled.div`
   font-size: 2em;
-  color: #00000080;
+  color: #fff;
 `
 const Button = styled.button`
   background: ${props => props.primary ? "palevioletred" : "white"};
@@ -52,6 +92,23 @@ const ButtonGroup = styled.div`
 const Spacer = styled.div`
   width: ${props => props.space + 'px'};
   height: ${props => props.space + 'px'};
+`
+//Table custom
+const Table = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+const TableRow = styled.div`
+  display: flex;
+  &:nth-child(1){
+    background-color: #00000020;
+  }
+`
+const TableColumn = styled.div`
+  display: flex;
+  padding: 5px;
+  border: 1px solid #00000060;
+  min-width: 200px;
 `
 
 export default App;
