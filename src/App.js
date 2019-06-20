@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import styled from 'styled-components'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {      
+    }
+    this.redirect = this.redirect.bind(this)
+  }
+
+  redirect(){
+    window.open('https://www.styled-components.com/docs/basics');
+  }
+
+  render(){
+    return (
+      <Wrapper>
+        <Title>React using styled-components</Title>      
+        <ButtonGroup>
+          <Button onClick={()=> this.redirect()}>Get documentation</Button>
+        </ButtonGroup>
+      </Wrapper>    
+    )
+  }
 }
+
+const Wrapper = styled.div`
+  background: papayawhip;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+const Title = styled.p`
+  font-size: 2em;
+  color: #00000080;
+`
+const Button = styled.button`
+  background: ${props => props.primary ? "palevioletred" : "white"};
+  color: ${props => props.primary ? "white" : "palevioletred"};
+  font-size: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+  cursor: pointer;
+`;
+const ButtonGroup = styled.div`
+  display: flex;
+`
+const Spacer = styled.div`
+  width: ${props => props.space + 'px'};
+  height: ${props => props.space + 'px'};
+`
 
 export default App;
